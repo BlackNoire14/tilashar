@@ -738,50 +738,122 @@
         <h2 class="section-title">Келесіз бе?</h2>
 
         <div class="rsvp-card">
-            <div id="rsvp-form-wrap">
-                <div class="rsvp-field">
-                    <label class="rsvp-label" for="r-name">Атыңыз</label>
-                    <input id="r-name" class="rsvp-input" type="text" placeholder="Айдана Сейтқазина">
-                </div>
-                <div class="rsvp-field">
-                    <div class="rsvp-label" style="display:block;margin-bottom:8px">Қатысасыз ба?</div>
-                    <div class="rsvp-radio-group">
-                        <div class="rsvp-radio">
-                            <input type="radio" name="attendance" id="att-yes" value="yes" checked="">
-                            <label for="att-yes">✓ Келемін</label>
-                        </div>
-                        <div class="rsvp-radio">
-                            <input type="radio" name="attendance" id="att-maybe" value="maybe">
-                            <label for="att-maybe">? Мүмкін</label>
-                        </div>
-                        <div class="rsvp-radio">
-                            <input type="radio" name="attendance" id="att-no" value="no">
-                            <label for="att-no">✗ Келе алмаймын</label>
-                        </div>
-                    </div>
-                </div>
+    <div id="rsvp-form-wrap">
 
-                
-                
-                <div class="rsvp-field">
-                    <label class="rsvp-label" for="r-phone">Телефон (міндетті емес)</label>
-                    <input id="r-phone" class="rsvp-input" type="tel" placeholder="+7 701 234 56 78">
-                </div>
-                <div class="rsvp-field">
-                    <label class="rsvp-label" for="r-msg">Тілек (міндетті емес)</label>
-                    <input id="r-msg" class="rsvp-input" type="text" placeholder="Құттықтаймыз!">
-                </div>
+        <form id="rsvp-form" action="https://api.web3forms.com/submit" method="POST">
 
-                <button class="rsvp-btn" id="rsvp-submit" onclick="submitRsvp()">✓ Қатысуды растау</button>
+            <!-- Web3Forms -->
+            <input type="hidden" name="access_key" value="ba565f4e-18ba-4239-a9d1-2c3342cd64d6">
 
-                            </div>
+            <!-- Настройки письма -->
+            <input type="hidden" name="subject" value="Новое подтверждение участия — Тілешар">
+            <input type="hidden" name="from_name" value="Сайт Тілешар">
 
-            <div id="rsvp-success">
-                <span class="rsvp-success-icon" id="rsvp-success-icon">🎉</span>
-                <div class="rsvp-success-title" id="rsvp-success-title">Рахмет!</div>
-                <div class="rsvp-success-sub" id="rsvp-success-sub">Тойда күтеміз!</div>
+            <div class="rsvp-field">
+                <label class="rsvp-label" for="r-name">Атыңыз</label>
+                <input
+                    id="r-name"
+                    class="rsvp-input"
+                    type="text"
+                    name="name"
+                    placeholder="Айдана Сейтқазина"
+                    required
+                >
             </div>
+
+            <div class="rsvp-field">
+                <div class="rsvp-label" style="display:block;margin-bottom:8px">
+                    Қатысасыз ба?
+                </div>
+
+                <div class="rsvp-radio-group">
+
+                    <div class="rsvp-radio">
+                        <input
+                            type="radio"
+                            name="attendance"
+                            id="att-yes"
+                            value="✓ Келемін"
+                            checked
+                        >
+                        <label for="att-yes">✓ Келемін</label>
+                    </div>
+
+                    <div class="rsvp-radio">
+                        <input
+                            type="radio"
+                            name="attendance"
+                            id="att-maybe"
+                            value="? Мүмкін"
+                        >
+                        <label for="att-maybe">? Мүмкін</label>
+                    </div>
+
+                    <div class="rsvp-radio">
+                        <input
+                            type="radio"
+                            name="attendance"
+                            id="att-no"
+                            value="✗ Келе алмаймын"
+                        >
+                        <label for="att-no">✗ Келе алмаймын</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="rsvp-field">
+                <label class="rsvp-label" for="r-phone">
+                    Телефон (міндетті емес)
+                </label>
+
+                <input
+                    id="r-phone"
+                    class="rsvp-input"
+                    type="tel"
+                    name="phone"
+                    placeholder="+7 701 234 56 78"
+                >
+            </div>
+
+            <div class="rsvp-field">
+                <label class="rsvp-label" for="r-msg">
+                    Тілек (міндетті емес)
+                </label>
+
+                <input
+                    id="r-msg"
+                    class="rsvp-input"
+                    type="text"
+                    name="message"
+                    placeholder="Құттықтаймыз!"
+                >
+            </div>
+
+            <button
+                class="rsvp-btn"
+                id="rsvp-submit"
+                type="submit"  onclick="submitRsvp()"
+            >
+                ✓ Қатысуды растау
+            </button>
+
+        </form>
+
+    </div>
+
+    <div id="rsvp-success">
+        <span class="rsvp-success-icon" id="rsvp-success-icon">🎉</span>
+
+        <div class="rsvp-success-title" id="rsvp-success-title">
+            Рахмет!
         </div>
+
+        <div class="rsvp-success-sub" id="rsvp-success-sub">
+            Тойда күтеміз!
+        </div>
+    </div>
+</div>
     </div>
     <br>
     <br>
