@@ -1,12 +1,7 @@
 {
-  "version": 2,
-  "buildCommand": "echo 'Static site - no build needed'",
-  "outputDirectory": ".",
-  "regions": ["iad1"],
-  "functions": {},
   "routes": [
     {
-      "src": "/.*",
+      "src": "/(.*)",
       "dest": "/index.html"
     }
   ]
