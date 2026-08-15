@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "public": false,
+  "buildCommand": "echo 'Static site - no build needed'",
+  "outputDirectory": ".",
+  "env": [],
+  "regions": ["iad1"],
+  "functions": {},
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "/index.html"
+    }
+  ]
+}
