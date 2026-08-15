@@ -556,12 +556,20 @@
 </div>
 
 
-<audio id="audio" src="gadilbek-zanai-xansaiymym_A9YSw050.mp3" loop="" autoplay preload="none"></audio>
+<audio id="audio" loop preload="auto">
+    <source src="./gadilbek-zanai-xansaiymym_A9YSw050.mp3" type="audio/mpeg">
+</audio>
+
 <div id="music-bar">
     <button class="music-btn" id="music-toggle" onclick="toggleMusic()">▶</button>
+
     <div class="music-wave" id="music-wave" style="display:none">
-        <span></span><span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
+
     <span class="music-name">Музыка</span>
 </div>
 
@@ -797,6 +805,7 @@ const EVENT_TIME = '14:00';
 // ── OPEN INVITATION ─────────────────────────────────────────────────────────
 function openInvitation() {
     document.getElementById('cover').classList.add('opened');
+
     setTimeout(() => {
         document.getElementById('cover').style.display = 'none';
     }, 900);
@@ -804,29 +813,44 @@ function openInvitation() {
     const inv = document.getElementById('invitation');
     inv.classList.add('visible');
 
-        const audio = document.getElementById('audio');
+    const audio = document.getElementById('audio');
+    const musicBar = document.getElementById('music-bar');
+    const musicToggle = document.getElementById('music-toggle');
+    const musicWave = document.getElementById('music-wave');
+
     if (audio) {
-        document.getElementById('music-bar').classList.add('visible');
-        audio.play().then(() => {
-            document.getElementById('music-toggle').textContent = '⏸';
-            document.getElementById('music-wave').style.display = 'flex';
-        }).catch(() => {
-            // Автовоспроизведение заблокировано браузером — бар виден, пользователь нажмёт сам
-        });
+        musicBar.classList.add('visible');
+
+        audio.volume = 0.7;
+
+        audio.play()
+            .then(() => {
+                musicToggle.textContent = '⏸';
+                musicWave.style.display = 'flex';
+            })
+            .catch((error) => {
+                console.log('Музыка не запустилась:', error);
+                musicToggle.textContent = '▶';
+            });
     }
-    
+
     startReveal();
 }
 
-// ── MUSIC ───────────────────────────────────────────────────────────────────
 function toggleMusic() {
     const audio = document.getElementById('audio');
     const btn = document.getElementById('music-toggle');
     const wave = document.getElementById('music-wave');
+
     if (audio.paused) {
-        audio.play();
-        btn.textContent = '⏸';
-        wave.style.display = 'flex';
+        audio.play()
+            .then(() => {
+                btn.textContent = '⏸';
+                wave.style.display = 'flex';
+            })
+            .catch(error => {
+                console.log('Ошибка запуска музыки:', error);
+            });
     } else {
         audio.pause();
         btn.textContent = '▶';
