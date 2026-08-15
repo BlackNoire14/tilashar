@@ -1002,47 +1002,7 @@ function updateRsvpBtn() {
 document.querySelectorAll('input[name="attendance"]').forEach(r => r.addEventListener('change', updateRsvpBtn));
 updateRsvpBtn();
 
-async function submitRsvp() {
-    const name = document.getElementById('r-name').value.trim();
-    if (!name) { document.getElementById('r-name').focus(); return; }
 
-    const btn = document.getElementById('rsvp-submit');
-    const attendance = document.querySelector('input[name="attendance"]:checked')?.value || 'yes';
-    btn.disabled = true;
-    btn.textContent = 'Отправка...';
-
-    const body = {
-        name,
-        attendance,
-        phone:       document.getElementById('r-phone')?.value || '',
-        message:     document.getElementById('r-msg')?.value || '',
-                    };
-
-    try {
-        const res = await fetch('/api/rsvp/' + SLUG, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content },
-            body: JSON.stringify(body),
-        });
-        if (res.ok) {
-            const labels = rsvpLabels[attendance] || rsvpLabels.yes;
-            document.getElementById('rsvp-success-icon').textContent  = labels.icon;
-            document.getElementById('rsvp-success-title').textContent = labels.title;
-            document.getElementById('rsvp-success-sub').textContent   = labels.sub;
-            document.getElementById('rsvp-form-wrap').style.display = 'none';
-            document.getElementById('rsvp-success').style.display = 'block';
-        } else {
-            const err = await res.json();
-            alert(err.error || 'Ошибка. Попробуйте ещё раз.');
-            btn.disabled = false;
-            updateRsvpBtn();
-        }
-    } catch {
-        alert('Ошибка сети. Проверьте подключение.');
-        btn.disabled = false;
-        updateRsvpBtn();
-    }
-}
 </script>
 
 
